@@ -1,0 +1,27 @@
+{
+  "name": "connect-validation",
+  "description": "A middleware that provide addError and sendError response methods.",
+  "version": "0.1.0-DEV",
+  "author": "Rémy Hubscher <rhubscher@mozilla.com>",
+  "homepage": "https://github.com/mozilla-services/connect-validation/",
+  "license" : "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mozilla-services/connect-validation.git"
+  },
+  "keywords": ["express", "validation", "error", "param", "body", "400", "bad request"],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "express": "3.x",
+    "mocha": "1.8.x",
+    "chai": "1.5.x",
+    "jshint": "2.x",
+    "sinon": "1.9.x",
+    "supertest": "0.10.x"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
