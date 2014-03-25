@@ -31,10 +31,10 @@ At the end of the validation, use `sendError()` to build the 400 errors response
 .. code-block:: javascript
 
     app.get('/', function (req, res) {
-		if (!req.query.hasOwnProperty('id')) {
+        if (!req.query.hasOwnProperty('id')) {
             res.addError("querystring", "id", "missing; id");
-			res.sendError();
-			return;
+            res.sendError();
+            return;
         }
     });
 
@@ -43,9 +43,9 @@ If you have only one error, you can use `sendError` directly.
 .. code-block:: javascript
 
     app.get('/', function (req, res) {
-		if (!req.query.hasOwnProperty('id')) {
-			res.sendError("querystring", "id", "missing; id");
-			return;
+        if (!req.query.hasOwnProperty('id')) {
+            res.sendError("querystring", "id", "missing; id");
+            return;
         }
     });
 
