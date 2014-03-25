@@ -23,3 +23,7 @@ jshint:
 .PHONY: mocha
 mocha:
 	@$(NODE_LOCAL_BIN)/mocha test.js --reporter spec
+
+.PHONY: demo
+demo:
+	node demo.js
