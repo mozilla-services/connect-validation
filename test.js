@@ -10,8 +10,9 @@ var supertest = require("supertest");
 var app = express();
 app.use(errors);
 
-describe("errors middlewares", function() {
-  var withSendError, withAddErrors;
+describe("addErrors middlewares", function() {
+
+  var withSendError, withAddErrors, withWrongLocation;
 
   // Create a route with the attachSession middleware.
   app.post('/with-send-error', function(req, res) {
@@ -25,15 +26,21 @@ describe("errors middlewares", function() {
       res.sendError();
     });
 
+  app.post('/with-wrong-send-error', function(req, res) {
+    res.sendError("wrong location", "test", "error");
+  });
+
   beforeEach(function() {
     withSendError = supertest(app).post("/with-send-error");
     withAddErrors = supertest(app).post("/with-add-errors");
+    withWrongLocation = supertest(app).post("/with-wrong-send-error");
   });
 
   describe("#sendError", function() {
     it("should return a 400 error with one message", function(done) {
       withSendError
         .expect(400)
+        .expect('Content-Type', /json/)
         .end(function(err, res) {
           expect(res.body).to.have.property("status");
           expect(res.body).to.have.property("errors");
@@ -47,12 +54,23 @@ describe("errors middlewares", function() {
           done();
         });
     });
+    it("should return a 500 error with wrong location.", function(done) {
+      withWrongLocation
+        .expect(500)
+        .end(function(err, res) {
+          expect(res.text, /wrong location/);
+          expect(res.text, /is not a valid location/);
+          expect(res.text, /Should be header, body, url or querystring./);
+          done();
+        });
+    });
   });
 
   describe("#addError", function() {
     it("should return a 400 error with three messages", function(done) {
       withAddErrors
         .expect(400)
+        .expect('Content-Type', /json/)
         .end(function(err, res) {
           expect(res.body).to.have.property("status");
           expect(res.body).to.have.property("errors");
