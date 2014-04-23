@@ -1,7 +1,7 @@
 {
   "name": "connect-validation",
   "description": "A middleware that provides `addError()` and `sendError()` response methods.",
-  "version": "0.2.0-DEV",
+  "version": "0.2.0",
   "author": "Rémy Hubscher <rhubscher@mozilla.com>",
   "homepage": "https://github.com/mozilla-services/connect-validation/",
   "bugs": "https://github.com/mozilla-services/connect-validation/issues/",

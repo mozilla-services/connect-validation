@@ -3,10 +3,11 @@ Changelog
 
 This document describes changes between each past release.
 
-0.2.0 (unreleased)
+0.2.0 (2014-04-23)
 ------------------
 
-- Nothing changed yet.
+- hasErrors implementation to be able to use multiple addError
+  and use sendError at the end only if needed.
 
 
 0.1.0 (2014-03-27)
