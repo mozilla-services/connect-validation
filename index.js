@@ -41,6 +41,9 @@ function errorsMiddleware(req, res, next) {
     }
     res.json(400, {status: "errors", errors: errors});
   };
+  res.hasErrors = function() {
+    return errors.length !== 0;
+  };
   next();
 }
 

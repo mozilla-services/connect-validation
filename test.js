@@ -20,11 +20,17 @@ describe("addErrors middlewares", function() {
   });
 
   app.post('/with-add-errors', function(req, res) {
-      res.addError("url", "token", "invalid token");
-      res.addError("querystring", "version", "missing: version");
-      res.addError("body", "callerId", "missing: callerId");
-      res.sendError();
-    });
+    if (res.hasErrors() !== false) {
+      throw new Error("We should have res.hasError() === false");
+    }
+    res.addError("url", "token", "invalid token");
+    res.addError("querystring", "version", "missing: version");
+    res.addError("body", "callerId", "missing: callerId");
+    if (res.hasErrors() !== true) {
+      throw new Error("We should have res.hasError() === true");
+      }
+    res.sendError();
+  });
 
   app.post('/with-wrong-send-error', function(req, res) {
     res.sendError("wrong location", "test", "error");
